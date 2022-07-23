@@ -14,20 +14,22 @@ $discord = new Discord([
 ]);
 
 //this starts the bot
-$discord->on('ready', function (Discord $discord) {
+$discord->on("ready", function (Discord $discord) {
     echo "Bot is ready!", PHP_EOL;
 
     // Listen for messages.
-        $discord->on("message", function ($message, $discord) {
+    $discord->on("message", function ($message, $discord) {
         $msg_data = explode(" ", $message->content);
 
         //check if the command for bot is used
         if (preg_match("/\\^a\b/i", $msg_data[0])) {
-        echo "{$message->author->username}: {$message->content}", PHP_EOL;
-        
-        }        
+            echo "{$message->author->username}: {$message->content}", PHP_EOL;
 
-
+            //include all modules
+            foreach (glob("modules/*.php") as $filename) {
+                include $filename;
+            }
+        }
     });
 });
 
