@@ -8,29 +8,18 @@ use Discord\Discord;
 use Discord\WebSockets\Intents;
 use Discord\WebSockets\Event;
 use Discord\Parts\User\Activity;
+use Discord\DiscordCommandClient;
+
 // Call the discord call and set a token
-$discord = new Discord([
+$discord = new DiscordCommandClient([
     "token" => $token,
+    "prefixes" => ["^a ", "@1000291542591881267 "],
 ]);
 
-//this starts the bot
 $discord->on("ready", function (Discord $discord) {
-    echo "Bot is ready!", PHP_EOL;
-
-    // Listen for messages.
-    $discord->on("message", function ($message, $discord) {
-        $msg_data = explode(" ", $message->content);
-
-        //check if the command for bot is used
-        if (preg_match("/\\^a\b/i", $msg_data[0])) {
-            echo "{$message->author->username}: {$message->content}", PHP_EOL;
-
-            //include all modules
-            foreach (glob("modules/*.php") as $filename) {
-                include $filename;
-            }
-        }
-    });
+    //include all modules
+    foreach (glob("modules/*.php") as $filename) {
+        include $filename;
+    }
 });
-
 $discord->run();
