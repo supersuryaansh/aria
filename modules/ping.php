@@ -1,4 +1,3 @@
-//reply with a fun gif when pinged
 <?php $discord->registerCommand(
     "ping",
     function ($message) {
@@ -8,3 +7,4 @@
         "description" => "I like Ping Pong with the cats",
     ]
 );
+//reply with a fun gif when pinged

@@ -1,4 +1,3 @@
-//display the user avatar
 <?php $discord->registerCommand(
     "zoom",
     function ($message) {
@@ -9,3 +8,4 @@
         "description" => "See your full sized Avatar",
     ]
 );
+//display the user avatar
